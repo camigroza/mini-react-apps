@@ -1,0 +1,79 @@
+$primary-color: #fd83c6;
+$secondary-color: #f9e0f2;
+$background-color: #f5f5fa;
+$text-color: #333;
+$button-color: #ffcad4;
+$button-hover-color: #ffb3c2;
+$border-radius: 50%;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url(bg-photo.jpg) no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-size: 48px;
+  color: $primary-color;
+  margin-bottom: 20px;
+}
+
+.container {
+  background-color: $secondary-color;
+  width: 350px;
+  height: 350px;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $box-shadow;
+  padding: 20px;
+}
+
+span {
+  font-size: 40px;
+  color: $text-color;
+  letter-spacing: 2px;
+}
+
+button {
+  background-color: $button-color;
+  color: $text-color;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s;
+
+  &:hover {
+    background-color: $button-hover-color;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button.reset {
+  background-color: #ffaaaa;
+
+  &:hover {
+    background-color: #ff8888;
+  }
+}

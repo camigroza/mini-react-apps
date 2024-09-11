@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   }, [running]);
 
   return (
-    <>
+    <div className="container">
       <h1>StopWatch</h1>
       <div>
         <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
@@ -32,6 +32,7 @@ function App() {
           <button onClick={() => setRunning(false)}>Stop</button>
         )}
         <button
+          className="reset"
           onClick={() => {
             setTime(0);
             setRunning(false);
@@ -40,7 +41,7 @@ function App() {
           Reset
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
