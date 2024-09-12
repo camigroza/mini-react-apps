@@ -8,9 +8,11 @@ function App() {
 
   return (
     <>
-      <h1>To Do List</h1>
-      <Input taskList={taskList} setTaskList={setTaskList} />
-      <div>
+      <div className="up">
+        <h1>To Do List</h1>
+        <Input taskList={taskList} setTaskList={setTaskList} />
+      </div>
+      <div className="list-items">
         {taskList.map((task, index) => (
           <ListItem
             key={index}

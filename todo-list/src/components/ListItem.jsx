@@ -6,8 +6,10 @@ export const ListItem = ({ task, index, taskList, setTaskList }) => {
 
   return (
     <>
-      <div>{task}</div>
-      <button onClick={handleDelete}>Delete</button>
+      <div className="list-item">
+        <div>{task}</div>
+        <button onClick={handleDelete}>Delete</button>
+      </div>
     </>
   );
 };
