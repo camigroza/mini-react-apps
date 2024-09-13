@@ -1,7 +1,24 @@
 import { useState } from "react";
 
-export const AddTask = () => {
+export const AddTask = ({ taskList, setTaskList }) => {
   const [addModal, setAddModal] = useState(false);
+  const [projectName, setProjectName] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "projectName") setProjectName(value);
+    if (name === "taskDescription") setTaskDescription(value);
+  };
+
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    setTaskList([...taskList, { projectName, taskDescription }]);
+    setAddModal(false);
+    setProjectName("");
+    setTaskDescription("");
+  };
 
   return (
     <>
@@ -17,26 +34,36 @@ export const AddTask = () => {
             </div>
             <form>
               <div className="label-input">
-                <label for="project-name">Project name</label>
+                <label htmlFor="project-name">Project name</label>
                 <input
                   id="project-name"
                   type="text"
                   placeholder="Project name"
+                  name="projectName"
+                  value={projectName}
+                  onChange={handleInput}
+                  autoComplete="off"
                   required
                 />
               </div>
               <div className="label-input">
-                <label for="task-description"> Task description</label>
+                <label htmlFor="task-description"> Task description</label>
                 <textarea
                   id="task-description"
                   rows="3"
                   placeholder="Task description"
+                  name="taskDescription"
+                  value={taskDescription}
+                  onChange={handleInput}
+                  autoComplete="off"
                   required
                 />
               </div>
             </form>
             <div className="btn-container">
-              <button id="btn-add-task">Add Task</button>
+              <button id="btn-add-task" onClick={handleAddTask}>
+                Add Task
+              </button>
             </div>
           </div>
         </>
