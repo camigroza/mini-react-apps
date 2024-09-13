@@ -14,7 +14,7 @@ function App() {
         <AddTask taskList={taskList} setTaskList={setTaskList} />
         <p>to add a new task</p>
       </div>
-      <div>
+      <div className="todo-list">
         <h2>To Do:</h2>
         {taskList.map((task, index) => (
           <>

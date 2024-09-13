@@ -160,8 +160,8 @@ button[type="button"] {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   padding: 15px;
   margin: 10px;
-  width: 100%;
-  max-width: 300px;
+  margin-top: 20px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -190,17 +190,17 @@ button[type="button"] {
     align-items: center;
 
     button {
-      color: $accent-color;
-      background-color: $secondary-color;
+      color: $text-color;
+      background-color: rgb(189, 188, 188);
       font-size: 1.1rem;
       padding: 5px 10px;
-      border: none;
+      border: 1px solid rgb(189, 188, 188);
       border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        transform: scale(1.1);
+        background-color: darken(rgb(189, 188, 188), 8%);
       }
     }
   }
@@ -213,13 +213,14 @@ button[type="button"] {
     .delete-button {
       background-color: #e7002e;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       padding: 5px 10px;
       border: none;
       border-radius: 5px;
       max-width: 35%;
       text-transform: uppercase;
       cursor: pointer;
+      margin-top: 5px;
       transition: background-color 0.3s ease;
 
       &:hover {
@@ -227,4 +228,14 @@ button[type="button"] {
       }
     }
   }
+}
+
+.todo-list {
+  h2 {
+    padding: 10px 10px 3px;
+    text-transform: uppercase;
+  }
+
+  position: fixed;
+  left: 20%;
 }
