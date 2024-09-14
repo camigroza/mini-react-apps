@@ -4,6 +4,7 @@ export const AddTask = ({ taskList, setTaskList }) => {
   const [addModal, setAddModal] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -14,10 +15,19 @@ export const AddTask = ({ taskList, setTaskList }) => {
 
   const handleAddTask = (e) => {
     e.preventDefault();
-    setTaskList([...taskList, { projectName, taskDescription }]);
-    setAddModal(false);
-    setProjectName("");
-    setTaskDescription("");
+    if (projectName === "") {
+      setErrorMessage("Project name cannot be empty!");
+    } else {
+      if (taskDescription === "") {
+        setErrorMessage("Task description cannot be empty!");
+      } else {
+        setTaskList([...taskList, { projectName, taskDescription }]);
+        setAddModal(false);
+        setProjectName("");
+        setTaskDescription("");
+        setErrorMessage("");
+      }
+    }
   };
 
   return (
@@ -30,7 +40,16 @@ export const AddTask = ({ taskList, setTaskList }) => {
           <div className="modal">
             <div className="add-task-modal-header">
               <h3>Add New Task</h3>
-              <button onClick={() => setAddModal(false)}>X</button>
+              <button
+                onClick={() => {
+                  setAddModal(false);
+                  setErrorMessage("");
+                  setProjectName("");
+                  setTaskDescription("");
+                }}
+              >
+                X
+              </button>
             </div>
             <form>
               <div className="label-input">
@@ -64,6 +83,7 @@ export const AddTask = ({ taskList, setTaskList }) => {
               <button id="btn-add-task" onClick={handleAddTask}>
                 Add Task
               </button>
+              <p className="err-msg">{errorMessage}</p>
             </div>
           </div>
         </>
