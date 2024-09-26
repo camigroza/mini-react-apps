@@ -7,4 +7,7 @@ A series of small projects to practice and learn React.
 ## To Do list
 ![image](https://github.com/user-attachments/assets/fd554afe-1e42-4cdb-af38-d07a7f7bdb97)
 
+## Task Tracker
+![image](https://github.com/user-attachments/assets/2b32b152-31c2-4fe0-adf9-8ad1a67297db)
+
 
