@@ -9,30 +9,40 @@ export const AddTask = ({ taskList, setTaskList }) => {
   const handleInput = (e) => {
     const { name, value } = e.target;
 
-    if (name === "projectName") setProjectName(value);
+    if (name === "projectName") {
+      setProjectName(value);
+      setErrorMessage("");
+    }
+    if (name === "projectName" && value === "") {
+      setErrorMessage("Enter project name to continue");
+    }
     if (name === "taskDescription") setTaskDescription(value);
   };
 
   const handleAddTask = (e) => {
     e.preventDefault();
-    if (projectName === "") {
-      setErrorMessage("Project name cannot be empty!");
+    if (!projectName) {
+      setErrorMessage("Enter project name to continue");
     } else {
-      if (taskDescription === "") {
-        setErrorMessage("Task description cannot be empty!");
-      } else {
-        setTaskList([...taskList, { projectName, taskDescription }]);
-        setAddModal(false);
-        setProjectName("");
-        setTaskDescription("");
-        setErrorMessage("");
-      }
+      setTaskList([...taskList, { projectName, taskDescription }]);
+      setAddModal(false);
+      setProjectName("");
+      setTaskDescription("");
+      setErrorMessage("");
     }
   };
 
   return (
     <>
-      <button type="button" onClick={() => setAddModal(true)}>
+      <button
+        type="button"
+        onClick={() => {
+          setAddModal(true);
+          if (projectName === "") {
+            setErrorMessage("Enter project name to continue");
+          }
+        }}
+      >
         + NEW
       </button>
       {addModal ? (
@@ -64,6 +74,7 @@ export const AddTask = ({ taskList, setTaskList }) => {
                   autoComplete="off"
                   required
                 />
+                <p className="err-msg">{errorMessage}</p>
               </div>
               <div className="label-input">
                 <label htmlFor="task-description"> Task description</label>
@@ -83,7 +94,6 @@ export const AddTask = ({ taskList, setTaskList }) => {
               <button id="btn-add-task" onClick={handleAddTask}>
                 Add Task
               </button>
-              <p className="err-msg">{errorMessage}</p>
             </div>
           </div>
         </>

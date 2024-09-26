@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 
-export const EditTask = ({ task, taskList, setTaskList, index }) => {
+export const EditTask = ({
+  task,
+  taskList,
+  setTaskList,
+  index,
+  setTime,
+  setRunning,
+}) => {
   const [editModal, setEditModal] = useState(false);
   const [projectName, setProjectName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -14,26 +21,30 @@ export const EditTask = ({ task, taskList, setTaskList, index }) => {
   const handleInput = (e) => {
     const { name, value } = e.target;
 
-    if (name === "projectName") setProjectName(value);
+    if (name === "projectName") {
+      setProjectName(value);
+      setErrorMessage("");
+    }
+    if (name === "projectName" && value === "") {
+      setErrorMessage("Enter project name to continue");
+    }
     if (name === "taskDescription") setTaskDescription(value);
   };
 
   const handleUpdateTask = (e) => {
     e.preventDefault();
-    if (projectName === "") {
-      setErrorMessage("Project name cannot be empty!");
+    if (!projectName) {
+      setErrorMessage("Enter project name to continue");
     } else {
-      if (taskDescription === "") {
-        setErrorMessage("Task description cannot be empty!");
-      } else {
-        const updatedTaskList = [...taskList];
-        updatedTaskList[index] = { projectName, taskDescription };
-        setTaskList(updatedTaskList);
-        setEditModal(false);
-        setProjectName("");
-        setTaskDescription("");
-        setErrorMessage("");
-      }
+      const updatedTaskList = [...taskList];
+      updatedTaskList[index] = { projectName, taskDescription };
+      setTaskList(updatedTaskList);
+      setEditModal(false);
+      setProjectName("");
+      setTaskDescription("");
+      setErrorMessage("");
+      setTime(0);
+      setRunning(false);
     }
   };
 
@@ -70,6 +81,7 @@ export const EditTask = ({ task, taskList, setTaskList, index }) => {
                   autoComplete="off"
                   required
                 />
+                <p className="err-msg">{errorMessage}</p>
               </div>
               <div className="label-input-e">
                 <label htmlFor="task-description-e"> Task description</label>
@@ -89,7 +101,6 @@ export const EditTask = ({ task, taskList, setTaskList, index }) => {
               <button id="btn-edit-task" onClick={handleUpdateTask}>
                 Update Task
               </button>
-              <p className="err-msg">{errorMessage}</p>
             </div>
           </div>
         </>
